@@ -15,7 +15,7 @@
 #define new DEBUG_NEW
 #endif
 
-
+#define FILE_CASCADE "C:\\Users\\Administrator\\Desktop\\trainGUI\\Train\\2banh\\train2banh-13-10-6-(tam-thoi-lay-cai-nay)\\classifier\\cascade.xml"
 
 // CzaqDlg dialog
 
@@ -40,6 +40,7 @@ BEGIN_MESSAGE_MAP(CFormDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_btn_Show, &CFormDlg::OnBnClickedbtnShow)
 	ON_BN_CLICKED(ID_btn_Video, &CFormDlg::OnBnClickedbtnVideo)
 	ON_BN_CLICKED(IDC_BUTTON1, &CFormDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_btn_Pause, &CFormDlg::OnBnClickedbtnPause)
 END_MESSAGE_MAP()
 
 
@@ -143,18 +144,6 @@ void CFormDlg::OnBnClickedbtnAnh()
 
 
 
-/*
-	
-*/
-void CFormDlg::OnBnClickedbtnShow()
-{
-	//1. Tải thumbnail
-	//2. Xử lý
-	//3. In ra
-
-}
-
-
 
 /*
 	1.Thoát chương trình
@@ -184,22 +173,37 @@ void CFormDlg::OnBnClickedbtnVideo()
 		//Mat src = imread(filename, 1);
 
 		//find vehicle 
-		TrackingVideo *trackingVideo = new TrackingVideo("C:\\Users\\Administrator\\Desktop\\trainGUI\\Train\\2banh\\train2banh-13-10-6-(tam-thoi-lay-cai-nay)\\classifier\\cascade.xml",filename);
+		//TrackingVideo *trackingVideo = new TrackingVideo(FILE_CASCADE,filename);
+
+		TrackingVideo::GetInstanceStartUp(FILE_CASCADE, filename);
 
 		//get result and free memory
 		
-
-		trackingVideo->Play();
-		delete trackingVideo;
-
-	
-
+		TrackingVideo::GetInstance()->Play();
+		TrackingVideo::Destroy();
 	}
 }
 
 void CFormDlg::OnBnClickedButton1()
 {
 
-	
+	TrackingVideo::GetInstance()->SetStatusOfPlay();
 	// TODO: Add your control notification handler code here
+}
+
+
+void CFormDlg::OnBnClickedbtnPause()
+{
+
+	// TODO: Add your control notification handler code here
+}
+
+
+/*
+
+*/
+void CFormDlg::OnBnClickedbtnShow()
+{
+	TrackingVideo::GetInstance()->SetStatusOfPlay();
+
 }

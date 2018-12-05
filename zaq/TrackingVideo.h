@@ -10,6 +10,9 @@ public:
 	void Play();
 	void SetStatusOfPlay();
 	int GetStatusOfPlay();
+	static TrackingVideo * GetInstanceStartUp(string cascadePath, string fileNamePath);
+	static TrackingVideo * GetInstance();
+	static void Destroy();
 
 private:
 	string cascadeFrontalfilename;
@@ -20,6 +23,7 @@ private:
 		int id;
 	};
 	int play;
+	static TrackingVideo* instance;
 
 	/*cv::Ptr<cv::CascadeClassifier> casCade;
 	 mainDetector;

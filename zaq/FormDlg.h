@@ -38,4 +38,5 @@ public:
 	afx_msg void OnBnClickedbtnShow();
 	afx_msg void OnBnClickedbtnVideo();
 	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedbtnPause();
 };

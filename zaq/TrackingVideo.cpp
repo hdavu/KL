@@ -2,7 +2,7 @@
 #include "TrackingVideo.h"
 
 
-
+TrackingVideo* TrackingVideo::instance = NULL;
 
 TrackingVideo::TrackingVideo(string cascadePath, string fileNamePath)
 {
@@ -57,7 +57,7 @@ void TrackingVideo::Play()
 	do
 	{
 
-		//if (play % 2 == 0)
+		if (play % 2 == 0)
 		{
 			cap >> ReferenceFrame;
 			Mat dst;
@@ -176,4 +176,30 @@ int TrackingVideo::GetStatusOfPlay()
 {
 	return play;
 }
+
+TrackingVideo * TrackingVideo::GetInstanceStartUp(string cascadePath, string fileNamePath)
+{
+	if (instance == NULL)
+	{
+		instance = new TrackingVideo( cascadePath,  fileNamePath);
+	}
+
+	return instance;
+}
+
+TrackingVideo * TrackingVideo::GetInstance()
+{
+	return instance;
+}
+
+void TrackingVideo::Destroy()
+{
+	if (instance != NULL)
+		delete instance;
+	instance = NULL;
+}
+
+
+
+
 
